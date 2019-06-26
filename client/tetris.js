@@ -1,7 +1,7 @@
-class Tetris
-{
-    constructor(element)
-    {
+class Tetris {
+
+    constructor(element) {
+
         this.element = element;
         this.canvas = element.querySelector('canvas');
         this.context = this.canvas.getContext('2d');
@@ -9,9 +9,12 @@ class Tetris
 
         this.arena = new Arena(12, 20);
         this.player = new Player(this);
+
         this.player.events.listen('score', score => {
             this.updateScore(score);
         });
+
+
 
         this.colors = [
             null,
@@ -33,13 +36,14 @@ class Tetris
 
             this.draw();
             requestAnimationFrame(this._update);
-        };
+        }
+
 
         this.updateScore(0);
+
     }
 
-    draw()
-    {
+    draw() {
         this.context.fillStyle = '#000';
         this.context.fillRect(0, 0, this.canvas.width, this.canvas.height);
 
@@ -47,11 +51,10 @@ class Tetris
         this.drawMatrix(this.player.matrix, this.player.pos);
     }
 
-    drawMatrix(matrix, offset)
-    {
+    drawMatrix(matrix, offset) {
         matrix.forEach((row, y) => {
             row.forEach((value, x) => {
-                if (value !== 0) {
+                if(value !== 0) {
                     this.context.fillStyle = this.colors[value];
                     this.context.fillRect(x + offset.x,
                                      y + offset.y,
@@ -61,13 +64,15 @@ class Tetris
         });
     }
 
-    run()
-    {
+    run() {
         this._update();
     }
 
-    serialize()
-    {
+    updateScore(score) {
+        this.element.querySelector('.score').innerText = score;
+    }
+
+    serialize() {
         return {
             arena: {
                 matrix: this.arena.matrix,
@@ -80,16 +85,11 @@ class Tetris
         };
     }
 
-    unserialize(state)
-    {
+    unserialize(state) {
         this.arena = Object.assign(state.arena);
         this.player = Object.assign(state.player);
         this.updateScore(this.player.score);
         this.draw();
     }
 
-    updateScore(score)
-    {
-        this.element.querySelector('.score').innerText = score;
-    }
 }

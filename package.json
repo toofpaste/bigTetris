@@ -1,0 +1,19 @@
+{
+  "name": "tetris_multi",
+  "version": "1.0.0",
+  "description": "Tetris Multiplayer",
+  "main": "server/main.js",
+  "dependencies": {
+    "express": "4.16.4",
+    "ws": "^6.1.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node server/main.js"
+  },
+  "author": "Not Me",
+  "license": "ISC",
+  "engines": {
+    "node": "11.x"
+  }
+}
