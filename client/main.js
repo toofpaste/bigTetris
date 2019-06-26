@@ -10,7 +10,7 @@ connectionManager.connect('wss://mp-tetris.herokuapp.com/');
 
 const keyListener = (e) => {
     [
-        [66, 68, 81, 69, 83],
+        [37, 39, 38, 69, 40],
         [72, 75, 89, 73, 74],
     ].forEach((key, index) => {
         const player = localTetris.player;
